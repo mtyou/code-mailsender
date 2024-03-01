@@ -376,6 +376,7 @@ void CMailSenderDlg::OnBnClickedButtonSend()
 	WritePrivateProfileString("email", "messageId", m_strMessageId, "./config.ini");
 	WritePrivateProfileString("email", "useCurrentTime", m_bUseCurrentTime ? "1" : "0", "./config.ini");
 	WritePrivateProfileString("email", "title", m_strTitle, "./config.ini");
+	WritePrivateProfileString("email", "reply", m_strReply, "./config.ini");
 	WritePrivateProfileString("email", "content", base64_encode((const unsigned char *)m_strBigContent.GetBuffer(0), m_strBigContent.GetLength()).c_str(), "./config.ini");
 
 	int pos = m_strFrom.Find("<");
