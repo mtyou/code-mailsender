@@ -564,7 +564,7 @@ int CMailSenderDlg::commitSendOk(const char* cdk)
 
 	try {
 		driver = sql::mysql::get_driver_instance();
-		con = driver->connect("5790e2563879c.sh.cdb.myqcloud.com:11409", "weimail", "b234Gfejejjjjw");
+		con = driver->connect("", "", "");
 		con->setAutoCommit(0);
 		con->setSchema("weimail");
 		sql[sprintf(sql, "UPDATE bs_email SET num = num - 1 WHERE cdk = '%s'", cdk)] = 0;
