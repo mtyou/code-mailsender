@@ -1434,11 +1434,7 @@ void CSmtp::FormatHeader(char* header)
 	CString sTZBias;
 	sTZBias.Format(_T("%+.2d%.2d"), -nTZBias / 60, nTZBias % 60);
 
-	// Date: <SP> <dd> <SP> <mon> <SP> <yy> <SP> <hh> ":" <mm> ":" <ss> <SP> <zone> <CRLF>
-	snprintf(header, BUFFER_SIZE, "Date: %d %s %d %d:%d:%d %s\r\n", timeinfo->tm_mday,
-		month[timeinfo->tm_mon], timeinfo->tm_year + 1900, timeinfo->tm_hour,
-		timeinfo->tm_min, timeinfo->tm_sec, sTZBias.GetBuffer(0));
-
+	
 	// restore original locale
 	_tsetlocale(LC_TIME, sOldLocale);
 
@@ -1477,21 +1473,6 @@ void CSmtp::FormatHeader(char* header)
 		strcat(header, "\r\n");
 	}
 
-	// X-Priority: <SP> <number> <CRLF>
-	switch (m_iXPriority)
-	{
-	case XPRIORITY_HIGH:
-		strcat(header, "X-Priority: 2 (High)\r\n");
-		break;
-	case XPRIORITY_NORMAL:
-		strcat(header, "X-Priority: 3 (Normal)\r\n");
-		break;
-	case XPRIORITY_LOW:
-		strcat(header, "X-Priority: 4 (Low)\r\n");
-		break;
-	default:
-		strcat(header, "X-Priority: 3 (Normal)\r\n");
-	}
 
 	// To: <SP> <remote-user-mail> <CRLF>
 	strcat(header, "To: ");

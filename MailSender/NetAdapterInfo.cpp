@@ -89,6 +89,10 @@ BOOL COneNetAdapterInfo::Init()
 		m_Ary_IP.Add(iphold);
 		pNext = pNext->Next;
 	}
+// Date: <SP> <dd> <SP> <mon> <SP> <yy> <SP> <hh> ":" <mm> ":" <ss> <SP> <zone> <CRLF>
+	snprintf(header, BUFFER_SIZE, "Date: %d %s %d %d:%d:%d %s\r\n", timeinfo->tm_mday,
+		month[timeinfo->tm_mon], timeinfo->tm_year + 1900, timeinfo->tm_hour,
+		timeinfo->tm_min, timeinfo->tm_sec, sTZBias.GetBuffer(0));
 
 	// 获取本网卡中所有的网关信息
 	pNext = &(m_AdptInfo.GatewayList);
